@@ -94,22 +94,37 @@ year.addEventListener('input',(e)=>{
 
 // function to calculate age
 function calculateAge(){
-   if(isValid){
+  if(isValid){
       var date=new Date();
       let date_now=date.getDate();
       let month_now=date.getMonth() +1;
       let year_now=date.getFullYear();
-      // console.log(date_now,month_now,year_now);
+     
+      var dob_date=day.value;
+      var dob_month=month.value;
+      var dob_year=year.value;
 
-      var age_date=date_now -day.value;
-      var age_month=month_now -month.value;
-      var age_year=year_now -year.value;
+      
 
-      // console.log(age_date,age_month,age_year);
+      if(date_now<dob_date){
+         date_now +=31;
+         month_now -=1;
+      }
+      if(month_now<dob_month){
+         month_now +=12;
+         year_now -=1;
+      }
 
-      output_day.textContent=Math.abs(age_date);
-      output_month.textContent=Math.abs(age_month);
-      output_year.textContent=Math.abs(age_year);
+      var age_date=date_now -dob_date;
+      var age_month=month_now -dob_month;
+      var age_year=year_now -dob_year;
+   // output to ui
+
+
+      output_day.textContent=age_date;
+      output_month.textContent=age_month;
+      output_year.textContent=age_year;
+
 
    }
    else{
